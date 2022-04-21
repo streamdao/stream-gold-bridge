@@ -32,34 +32,36 @@ Potential Issue:
 Total circulation on mainnet on the Stream Gold Smart contract will not add up immediately, but will reach eventual consistency. We need to make it sufficiently clear on chain to not use the total circulation as a source of truth for applications that require immediate information to this. For eg. on the cache site we can show the aggregated oracle data and the Chainlink feed, both of which will always be correct else the minting and unlock function will be paused.
 
 ## Polygon Cross-Chain 
-We derive Stream Gold contracts from FX-Portal repo, we create a simplified Stream Gold contract and then deploy that as the bridge contract with required FX extensions
+We derive Stream Gold contracts from FX-Portal repo, we create a simplified Stream Gold smart contract and then deploy that as the bridge contract with required FX extensions
 
-for FxERC20BridgeTunnel -> _tokenTemplate -> derived simplified SGLD
-for FxERC20RootTunnel -> _fxERC20Token -> derived simplified SGLD
+for FxERC20BridgeTunnel -> _tokenTemplate -> derived simplified $SGLD
+for FxERC20RootTunnel -> _fxERC20Token -> derived simplified $SGLD
 
+## ToDo
+   
 RootToken
-https://goerli.etherscan.io/token/0x1542ac6e42940476c729680ff147e0cedcfcfcf2
 
-Successfully verified contract FxBridgeRootTunnel on Etherscan.
-https://goerli.etherscan.io/address/0x25a9AF323B3d3C49b3206FcaeD85C64Cab42Ba7e#code
 
-Successfully verified contract FxERC20BridgeTunnel on mumbai.
-https://mumbai.polygonscan.com/address/0x3b56d4c37FDA2c701787250b0C0277C6383Cf043#code
+Smart contract FxBridgeRootTunnel on Etherscan:
 
-Successfully verified contract StreamGoldBridge on mumbai.
-https://mumbai.polygonscan.com/address/0x89F8f1734abe1AB8AdBCa64bAbc187f95b4BCcC8#code
+
+Smart contract FxERC20BridgeTunnel on mumbai:
+
+
+Smart contract StreamGoldBridge on mumbai:
+
 
 ## Testing
 
 ### Test Coverage 
 Current unit tests are used to verify that the upgraded Stream Gold smart contract behaves as expected.
 
-Additional tests for cross chain in progress via matic.js sdk
+Additional tests for cross-chain in progress via matic.js sdk
 
 ### Manual testing via Testnet
 1. Get some goerli eth https://goerli-faucet.mudit.blog/
-2. Get some test SGLD -> Send address to Stream team
-3. Approve transfer of test SGLD 
+2. Get some test $SGLD -> Send address to Stream team
+3. Approve transfer of test $SGLD 
 4. https://goerli.etherscan.io/token/0x1542ac6e42940476c729680ff147e0cedcfcfcf2
 5. Call approve where spender is 0x61FFeAC0E2467e58173FfD15c0F993F890f989f6 and amount has 8 decimals
 6. Goto https://goerli.etherscan.io/address/0x61FFeAC0E2467e58173FfD15c0F993F890f989f6#writeContract
@@ -76,7 +78,7 @@ https://mumbai.polygonscan.com/address/0x89F8f1734abe1AB8AdBCa64bAbc187f95b4BCcC
 Transfer from L2 to L1 requires first calling withdraw on Bridge chain 
 1. https://mumbai.polygonscan.com/address/0x617d6f361AF9314E31B6675f174a2321abE929AE#code
 2. Note down tx hash
-3. 3. goto <cache-matic.js>/examples/pos/erc20/withdraw_exit.js
+3. 3. goto <stream-matic.js>/examples/pos/erc20/withdraw_exit.js
 4. Set the new transaction hash
 5. Execute the js script
    
