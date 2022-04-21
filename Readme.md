@@ -1,7 +1,7 @@
 ## Introduction
 This repo is meant for the cross-chain bridge contracts for Stream Protocol / Stream Gold. Ethereum layer 2's and other chain information will be hosted in this repository, with smart contracts and tests in each chain hosted in their respectively named folders.
 
-Token -> RootTunnel<BaseRootTunnel> -> FxRoot -> StateSender -> Checkpoints(Merrkle Tree, Heimdall nodes) -> FxBridge -> RootChildContract -> BridgeToken (Mints)
+Token -> RootTunnel<BaseRootTunnel> -> FxRoot -> StateSender -> Checkpoints(Merrkle Tree, Heimdall nodes) -> FxBridge -> RootBridgeContract -> BridgeToken (Mints)
 
 ## Design philosophies
 
@@ -12,14 +12,14 @@ Token -> RootTunnel<BaseRootTunnel> -> FxRoot -> StateSender -> Checkpoints(Merr
 
 ## Workflow
 
-We deploy Stream bridges and enable feature flags to allow us to quickly deploy faster. The planned phases are as follows:
+To deploy Stream Gold Bridges and enable feature flags to allow us to quickly deploy faster. The planned phases are as follows:
 
 1. For now we will first just deploy, keep redemptions only on mainnet using a simple no mint no redeem address function on Polygon.
 2. feature flag- Enable redemptions on that blockchain, the chain has a local redeem and unbacked treasury address, only cache can withdraw back to the mainnet from this address.
 
-Upon each redemptions event an offchain aggregator listens and computes the data and has the ability to use Stream Gold token governor to pause the oracle in case there is a discrepancy between
+Upon each redemptions event an offchain aggregator listens and computes the data and has the ability to use Stream Gold ($SGLD) token governor to pause the oracle in case there is a discrepancy between
 the Chainlink blockchain feed and aggregated total circulation.
-We lazy transfer from the unbacked in each local chain to the master chain when there is enough SGLD tokens in each chain to make the costs of bridge transfer make sense.
+We lazy transfer from the unbacked in each local chain to the master chain when there is enough $SGLD tokens in each chain to make the costs of bridge transfer make sense.
 
 An offchain adapter that aggregates the oracle data for total circulation is used as illustrated in the following diagram:
 
@@ -29,7 +29,7 @@ Here we use Chainlink oracle  as the main oracle that gives us the data of how m
 
 
 Potential Issue:
-Total circulation on mainnet on the Stream Gold Smart contract will not add up immediately, but will reach eventual consistency. We need to make it sufficiently clear on chain to not use the total circulation as a source of truth for applications that require immediate information to this. For eg. on the cache site we can show the aggregated oracle data and the Chainlink feed, both of which will always be correct else the minting and unlock function will be paused.
+Total circulation on mainnet on the Stream Gold smart contract will not add up immediately, but will reach eventual consistency. We need to make it sufficiently clear on chain to not use the total circulation as a source of truth for applications that require immediate information to this. For eg. on the cache site we can show the aggregated oracle data and the Chainlink feed, both of which will always be correct else the minting and unlock function will be paused.
 
 ## Polygon Cross-Chain 
 We derive Stream Gold contracts from FX-Portal repo, we create a simplified Stream Gold smart contract and then deploy that as the bridge contract with required FX extensions
