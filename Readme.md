@@ -1,7 +1,7 @@
 ## Introduction
-This repo is meant for the cross chain bridge contracts for Stream Protocol / Stream Gold. Ethereum layer 2's and other chain information will be hosted in this repository, with smart contracts and tests in each chain hosted in their respectively named folders.
+This repo is meant for the cross-chain bridge contracts for Stream Protocol / Stream Gold. Ethereum layer 2's and other chain information will be hosted in this repository, with smart contracts and tests in each chain hosted in their respectively named folders.
 
-Token -> RootTunnel<BaseRootTunnel> -> FxRoot -> StateSender -> Checkpoints(Merrkle Tree, Heimdall nodes) -> FxChild -> RootChildContract -> ChildToken (Mints)
+Token -> RootTunnel<BaseRootTunnel> -> FxRoot -> StateSender -> Checkpoints(Merrkle Tree, Heimdall nodes) -> FxBridge -> RootChildContract -> BridgeToken (Mints)
 
 ## Design philosophies
 
