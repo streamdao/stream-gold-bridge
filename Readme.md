@@ -60,7 +60,7 @@ Additional tests for cross-chain in progress via matic.js sdk
 
 ### Manual testing via Testnet
 1. Get some goerli eth https://goerli-faucet.mudit.blog/
-2. Get some test $SGLD -> Send address to Stream team
+2. Get some test $SGLD -> Send address to Stream Protocol team
 3. Approve transfer of test $SGLD 
 4. https://goerli.etherscan.io/token/0x1542ac6e42940476c729680ff147e0cedcfcfcf2
 5. Call approve where spender is 0x61FFeAC0E2467e58173FfD15c0F993F890f989f6 and amount has 8 decimals
